@@ -1,0 +1,47 @@
+<!-- page templates for show info about user -->
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% load gravatar %}
+
+
+
+{% block header %}
+  <div class='jumbotron'>
+    <h1>Здесь находится информация о вашем профиле:</h1>
+  </div>
+{% endblock header %}
+
+{% block content %}
+  <img src="{% gravatar_url user.email 250 %}">
+  <br>
+  <br>
+  <br>
+  <div id="user">
+    <a href="{% url 'auth_password_change' %}" class="btn btn-danger">
+    Изменить пароль</a>
+    <a href="{% url 'users:email_change' user.id %}" class="btn btn-danger">
+    Изменить эл. адрес</a>
+    <a href="{% url 'users:add_first_last_name' user.id %}" class="btn btn-info">
+    Добавить имя и фамилию</a>
+    <a href="{% url 'users:edit_first_last_name' user.id %}" class="btn btn-warning">
+    Редактировать имя и фамилию</a>
+    <a href="{% url 'users:delete_user' user.id %}" class="btn btn-danger">Удалить свой профиль</a>
+  </div>
+  <br>
+  <h3 align="justify">Пользователь зашёл под именем: <strong>{{ user.username }}</strong></h3>
+  <h3 align="justify">Дата регистрации пользователя: <strong>{{ user.date_joined }}</strong></h3>
+  <h3 align="justify">Адрес электронной почты пользователя: <strong>{{ user.email }}</strong></h3>
+  {% if user.first_name %}
+    <h3 align="justify">Имя пользователя: <strong>{{ user.first_name }}</strong></h3>
+  {% else %}
+    <h3 align="justify">Имя пользователя: <strong>Вы пока не добавили своё имя!</strong></h3>
+  {% endif %}
+
+  {% if user.last_name %}
+    <h3 align="justify">Фамилия пользователя: <strong>{{ user.last_name }}</strong></h3>
+  {% else %}
+    <h3 align="justify">Фамилия пользователя: <strong>Вы пока не добавили свою фамилию!</strong></h3>
+  {%  endif%}
+
+
+{% endblock content %}

@@ -1,0 +1,95 @@
+<!-- base templates -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="http://faviconka.ru/ico/faviconka_ru_1934.gif" type="image/png">
+
+    {% block title %}<title>{{ title }} | Журнал обучения</title>{% endblock title %}
+
+    <!-- load items bootstrap -->
+    {% load bootstrap3 %}
+
+    <!-- load items css and JS -->
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    <!-- style base templates -->
+    <style>
+      html {
+	        position: relative;
+	        min-height: 100%;
+      }
+
+      body {
+	        /* Отступ снизу, по высоте футера */
+	        margin-bottom: 120px !important;
+      }
+
+      .footer {
+	          position: absolute;
+	          bottom: 0;
+	          width: 100%;
+	          /* Фиксированная высота футера */
+	          height: 70px;
+	          background-color: #f5f5f5;
+	          background: #39b54a; /* Цвет фона */
+              color: #fff; /* Цвет текста */
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <!-- static navigation panel -->
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+      <div class="container">
+
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+          </button>
+          <a class="navbar-brand" href="{% url 'learning_logs:index' %}">Журнал обучения</a>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'learning_logs:topics' %}">Темы</a></li>
+          </ul>
+
+          <ul class="nav navbar-nav">
+            {% if user.is_authenticated %}
+              <li><a href="{% url 'nice_chips:index_reminder' %}">Мои напоминания</a></li>
+              <li><a href="{% url 'nice_chips:index_draft' %}">Мой черновик</a></li>
+              <li><a href="{% url 'users:user' user.id %}">{{ user.username }}, моя страница</a></li>
+              <li><a href="{% url 'auth_logout' %}">Выйти</a></li>
+            {% else %}
+              <li><a href="{% url 'registration_register' %}">Регистрация</a></li>
+              <li><a href="{% url 'auth_login' %}">Войти</a></li>
+            {% endif %}
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+
+      <!-- extends daughters templates -->
+      <div class="container">
+        <div class="page-header">
+          {% block header %}{% endblock header %}
+        </div>
+        <div>
+          {% block content %}{% endblock content %}
+        </div>
+      </div> <!-- /container -->
+
+      <!-- bottom page -->
+      <footer class="footer">
+        <br>
+        <h4 align="center">Ваш личный электронный блокнот или журнал, данные конфиденциальны и защищены
+        "Журнал обучения - 2017"</h4>
+      </footer>
+   </body>
+</html>

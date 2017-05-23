@@ -1,0 +1,38 @@
+<!-- templates page myreminder -->
+{% extends 'base.html' %}
+
+
+{% block header %}
+  <div class='jumbotron'>
+    <h1>Ваш личные напоминания:</h1>
+  </div>
+{% endblock header %}
+
+{% block content %}
+    <h2>Организауйте в своём журнале систему напоминаний. Вы хотите узнать как это делать ?</h2>
+    <h2>Начните с добавления своего напоминания, -
+    <a href="{% url 'nice_chips:add_reminder' %}">Жми сюда ◄ </a></h2>
+    <h2>Если у вас уже есть напоминания, управляйте ими:</h2>
+    <br>
+    <ul>
+    {% for reminder in reminder %}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>
+            {{ reminder.date_added|date:'M d, Y H:i' }}
+            <a href="#"> ▼ Редактировать</a>
+            <a href="#"> ✖ Удалить</a>
+          </h3>
+        </div>
+        <div class="panel-body">
+          {{ reminder.text|linebreaks }}
+        </div>
+      </div> <!-- panel -->
+
+    {% empty %}
+      <li>
+        В этом журнале пока нет  добавленных напоминаний.
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock content %}

@@ -1,0 +1,27 @@
+<!-- templates page for login -->
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block title %}
+  <title>Вход | Журнал обучения </title>
+{% endblock title %}
+
+{% block header %}
+ <h2>Войдите в свой аккаунт</h2>
+{% endblock header %}
+
+{% block content %}
+  <form method="post" action="" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+
+    {% buttons %}
+      <button name="submit" class="btn btn-primary">Войти</button>
+    {% endbuttons %}
+
+    <p>Забыли пароль?<a href="{% url 'auth_password_reset' %}"> Сменить пароль</a></p>
+    <p>Вы ещё не зарегистрированы?<a href="{% url 'registration_register' %}"> Зарегистрироваться</a></p>
+    <input type="hidden" name="next" value="{% url 'learning_logs:index' %}" />
+  </form>
+
+{% endblock content %}

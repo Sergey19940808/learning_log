@@ -1,0 +1,26 @@
+<!-- templates page for form change email -->
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block header %}
+  <div class='jumbotron'>
+    <h1>Изменение электронного адреса:</h1>
+  </div>
+{% endblock header %}
+
+{% block content %}
+
+  <h2>{{ user.username }}, вы хотите сменить свой электронный адрес: {{ user.email }}.</h2>
+
+  <h2>Пожалуйста введите новый адрес электронной почты:</h2>
+  <br>
+
+  <form action="{% url 'users:email_change' user.id %}" method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+
+    {% buttons %}
+      <button name="submit" class="btn btn-primary">Изменить почту</button>
+    {% endbuttons %}
+  </form>
+{% endblock content %}

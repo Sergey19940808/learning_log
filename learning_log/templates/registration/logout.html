@@ -1,0 +1,19 @@
+<!-- templates logout -->
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>Выход | Журнал обучения </title>
+{% endblock title %}
+
+{% block header %}
+  <div class="jumbotron">
+    <h1 align="center">Вы вышли из своего аккаунта:</h1>
+  </div>
+{% endblock header %}
+
+{% block content %}
+  <h2>Спасибо, что были с нами. Ждем вас снова.<br/><br/></h2>
+  <h2>Нажмите на ссылку ниже, чтобы войти снова в свой аккаунт -
+  <a href="{% url 'auth_login' %}"> Войти</a></h2>
+
+{% endblock content %}

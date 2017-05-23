@@ -1,0 +1,20 @@
+<!-- templates for show error about closed registration -->
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>Ошибка регистрации | Журнал обучения </title>
+{% endblock title %}
+
+{% block header %}
+  <div class='jumbotron'>
+      <h1>Произошла ошибка регистрации:</h1>
+  </div>
+{% endblock header %}
+
+{% block content %}
+  <h2>Истекло время регистрации подтверждения аккаунта. Напишите администратору:</h2>
+  <h2>alekseyserzh88@gmail.com</h2>
+  <br>
+  <h2>Либо зарегистрируйте другой аккаунт:
+  <a href="{% url 'registartion_register' %}">Жмите сюда</a>.</h2>
+{% endblock content %}

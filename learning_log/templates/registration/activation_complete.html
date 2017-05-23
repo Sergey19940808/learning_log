@@ -1,0 +1,16 @@
+<!-- templates page activation -->
+{% extends 'base.html' %}
+
+{% block title %}<title>Активация | Журнал обучения </title>{% endblock title %}
+
+{% block header %}
+  <div class='jumbotron'>
+    <h1>Активация завершена:</h1>
+  </div>
+{% endblock header %}
+
+{% block content %}
+  <h2>Приветствую тебя дорогой пользователь! Твоя учетная запись активирована.
+  <a href="{% url 'auth_login' %}">Нажми сюда</a> чтобы зайти на сайт.
+  И начать пользоваться доступными ресурсами - Learning Log !</h2>
+{% endblock content %}

@@ -1,0 +1,27 @@
+<!-- templates page for form edit first_name and last_name -->
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block header %}
+  <div class='jumbotron'>
+    <h1>Редактирование имени и фамилии:</h1>
+  </div>
+{% endblock header %}
+
+{% block content %}
+
+  <h2>{{ user.username }}, вы хотите отредактировать имя и фамилию вашего профиля.</h2>
+
+  <h2>Пожалуйста измените данные в ниже указанных полях формы:</h2>
+  <br>
+
+  <form action="{% url 'users:edit_first_last_name' user.username %}" method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+
+    {% buttons %}
+      <button name="submit" class="btn btn-primary">Изменить</button>
+    {% endbuttons %}
+    <input type="hidden" name="next" value="{% url 'users:user' user.username %}" />
+  </form>
+{% endblock content %}

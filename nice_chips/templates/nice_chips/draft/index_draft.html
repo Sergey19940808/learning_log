@@ -1,0 +1,38 @@
+<!-- templates page mydraft -->
+{% extends 'base.html' %}
+
+
+{% block header %}
+  <div class='jumbotron'>
+    <h1>Ваш личный черновик:</h1>
+  </div>
+{% endblock header %}
+
+{% block content %}
+    <h2>Добавьте запись в свой черновик, чтобы сохранить её и не потерять.</h2>
+    <h2>Чтобы добавить запись в черновик, -
+    <a href="{% url 'nice_chips:add_draft' %}">Жми сюда ◄ </a></h2>
+    <h2>Добавленные вами записи в черновик:</h2>
+    <br>
+    <ul>
+    {% for draft in draft %}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>
+            {{ draft.date_added|date:'M d, Y H:i' }}
+            <a href="{% url 'nice_chips:edit_draft' draft.id %}"> ▼ Редактировать</a>
+            <a href="{% url 'nice_chips:delete_draft' draft.id %}"> ✖ Удалить</a>
+          </h3>
+        </div>
+        <div class="panel-body">
+          {{ draft.text|linebreaks }}
+        </div>
+      </div> <!-- panel -->
+
+    {% empty %}
+      <li>
+        В этом черновике пока нет записей.
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock content %}

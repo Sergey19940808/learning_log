@@ -1,0 +1,21 @@
+<!-- templates complete registration -->
+{% extends 'base.html'  %}
+
+{% block title %}
+  <title>Завершение регистрации | Журнал обучения </title>
+{% endblock title %}
+
+{% block header %}
+  <div class='jumbotron'>
+      <h1>Вы почти завершили регистрацию:</h1>
+  </div>
+{% endblock header %}
+
+{% block content %}
+  <h2>Спасибо за уделённое время. На ваш e-mail отправлен
+  код подтверждения. Необходимо подтвердить регистрацию,
+  просто кликнув по указанной ссылке.</h2>
+  <br>
+  <h2>До сих пор не получили письмо с подтверждением ? Отправьте письмо ещё раз нажав
+  <a href="{% url 'users:resend_activation_email' %}">сюда</a>.</h2>
+{% endblock content %}
